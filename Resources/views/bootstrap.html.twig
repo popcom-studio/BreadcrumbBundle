@@ -1,0 +1,13 @@
+{% if items|length -%}
+    <nav aria-label="breadcrumb"><ol class="breadcrumb">
+            {%- for key, item in items -%}
+                <li {% if not loop.last -%}class="breadcrumb-item"{% else %}class="breadcrumb-item active" aria-current="page"{% endif %}>
+                    {%- if item.url -%}
+                        <a href="{{ item.url }}">{{ item.translatedLabel }}</a>
+                    {%- else %}
+                        {{- item.translatedLabel -}}
+                    {%- endif -%}
+                </li>
+            {%- endfor -%}
+        </ol></nav>
+{%- endif %}
