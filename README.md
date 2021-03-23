@@ -161,7 +161,12 @@ The bundle default template for rendering breadcrumb can be overridden by adding
 
 ``` yml
 asprega_breadcrumb:
+    # Your custom template
     template: YourBundle::breadcrumb.html.twig
+    # Bootstrap template
+    template: '@AndreaSpregaBreadcrumb/bootstrap.html.twig'
+    # or default template
+    template: '@AndreaSpregaBreadcrumb/breadcrumb.html.twig'
 ```
 
 If you intend to do this, it's recommended to copy `Resources/views/breadcrumb.html.twig` to your bundle and customize it.
