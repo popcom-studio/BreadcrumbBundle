@@ -58,11 +58,15 @@ class BreadcrumbItemProcessor
             $processedLabel = $this->translator->trans($item->getLabel(), [], $item->getTranslationDomain());
         }
 
+        $usefulParams = [];
+        $route = $this->router->getRouteCollection()->get($item->getRoute());
+        if ($route) preg_match('#\{([a-zA-Z0-9_]+)\}#', $route->getPath(), $usefulParams);
+
         // Process the route
         // TODO: cache parameters extracted from current request
         $params = [];
         foreach ($this->requestStack->getCurrentRequest()->attributes as $key => $value) {
-            if ($key[0] !== '_') {
+            if ($key[0] !== '_' && in_array($key, $usefulParams)) {
                 $params[$key] = $value;
             }
         }
